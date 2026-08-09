@@ -1,6 +1,6 @@
 {
   "name": "js-track",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Universal tracking package for Web (React, Next.js, Vue) and React Native / Expo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
