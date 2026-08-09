@@ -1,5 +1,5 @@
 {
-  "name": "js-track",
+  "name": "@joelwillseek/js-track",
   "version": "0.0.1",
   "description": "Universal tracking package for Web (React, Next.js, Vue) and React Native / Expo",
   "main": "dist/index.js",
