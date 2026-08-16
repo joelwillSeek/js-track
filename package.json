@@ -1,6 +1,6 @@
 {
   "name": "@joelwillseek/js-track",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Universal tracking package for Web (React, Next.js, Vue) and React Native / Expo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "typescript": "^5.0.0"
   }
 }

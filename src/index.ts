@@ -13,6 +13,11 @@ export class JsTrack {
   }
 
   public async trackEvent(eventName: string, metadata?: Record<string, any>): Promise<void> {
+    // Conditional logging for tracking calls
+    if (process.env.TRACK_LOG_SHOW === 'true') {
+      console.log('[JsTrack] trackEvent called - eventName:', eventName, 'metadata:', metadata);
+    }
+
     try {
       const url = `${this.baseUrl}/track-from-platform`;
       const customHeaders = this.getHeaders ? this.getHeaders() : {};
@@ -30,9 +35,16 @@ export class JsTrack {
         },
         body: JSON.stringify(payload),
       });
+
+      if (process.env.TRACK_LOG_SHOW === 'true') {
+        console.log('[JsTrack] trackEvent completed - eventName:', eventName);
+      }
     } catch (e) {
       // Analytics failures shouldn't crash the client app
       // e.g. Network offline, backend unreachable
+      if (process.env.TRACK_LOG_SHOW === 'true') {
+        console.log('[JsTrack] trackEvent error - eventName:', eventName, 'error:', e);
+      }
     }
   }
 }
