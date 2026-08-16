@@ -12,7 +12,7 @@ export class JsTrack {
     this.getHeaders = options.getHeaders;
   }
 
-  public async trackEvent(eventName: string, metadata?: Record<string, any>): Promise<void> {
+  public async trackEvent(eventName: string, metadata: Record<string, any>): Promise<void> {
     // Conditional logging for tracking calls
     if (process.env.TRACK_LOG_SHOW === 'true') {
       console.log('[JsTrack] trackEvent called - eventName:', eventName, 'metadata:', metadata);
@@ -22,10 +22,10 @@ export class JsTrack {
       const url = `${this.baseUrl}/track-from-platform`;
       const customHeaders = this.getHeaders ? this.getHeaders() : {};
       
-      const payload: Record<string, any> = { eventName };
-      if (metadata) {
-        payload.metadata = metadata;
-      }
+      const payload: Record<string, any> = {
+        eventName,
+        metadata,
+      };
 
       await fetch(url, {
         method: 'POST',
