@@ -1,28 +1,31 @@
 export interface JsTrackOptions {
   baseUrl: string;
+  endpoint: string;
   getHeaders?: () => Record<string, string>;
 }
 
 export class JsTrack {
   private baseUrl: string;
+  private endpoint: string;
   private getHeaders?: () => Record<string, string>;
 
   constructor(options: JsTrackOptions) {
     this.baseUrl = options.baseUrl;
+    this.endpoint = options.endpoint;
     this.getHeaders = options.getHeaders;
   }
 
-  public async trackEvent(eventName: string, metadata: Record<string, any>): Promise<void> {
+  public async trackEvent(eventName: string, metadata: Record<string, any> = {}): Promise<void> {
     // Conditional logging for tracking calls
     if (process.env.TRACK_LOG_SHOW === 'true') {
       console.log('[JsTrack] trackEvent called - eventName:', eventName, 'metadata:', metadata);
     }
 
     try {
-      const url = `${this.baseUrl}/track-from-platform`;
+      const url = `${this.baseUrl}${this.endpoint}`;
       const customHeaders = this.getHeaders ? this.getHeaders() : {};
       
-      const payload: Record<string, any> = {
+      const payload = {
         eventName,
         metadata,
       };
